@@ -8,13 +8,13 @@ function Procesador() {
 	this.sus_por_prioridad = false;
 
 	// Colas
-	this.fcfs = new Cola();      // First Come First Served
-	this.sjf = new Cola(true);   // Short Job First
-	this.rr = new Cola();        // Round Robin
-	this.bloq = new Cola();      // Bloqueados
-	this.listos = new Cola();    // Listos
-	this.term = new Cola();      // Terminados
-	this.general = new Cola();   // Total con todos los procesos
+	this.fcfs = new Cola();      
+	this.sjf = new Cola(true);   
+	this.rr = new Cola();        
+	this.bloq = new Cola();      
+	this.listos = new Cola();  
+	this.term = new Cola();     
+	this.general = new Cola();   
 
 	this.empezar = () => {
 		this.hilo_timer = setInterval(() => {

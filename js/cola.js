@@ -43,7 +43,7 @@ function Cola(ord=false){
 
 			this.tam--;
 			return first;
-		}
+		} innecesary
 		return null;
 	}
 
