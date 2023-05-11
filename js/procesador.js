@@ -46,9 +46,9 @@ function Procesador() {
                     if (proceso.rafaga_res > 0) {
                         proceso.rafaga_res--;
                         if (proceso.prioridad == 1) {
-                            if (proceso.rafaga - proceso.rafaga_res == this.quantum + 1) {
-                                this.suspender_actual(proceso);
-                            }
+                            // if (proceso.rafaga - proceso.rafaga_res == this.quantum + 1) {
+                            //     this.suspender_actual(proceso);
+                            // }
                         }
                     } else {
                         proceso.estado = TERMINADO;
@@ -93,6 +93,7 @@ function Procesador() {
             this.actualizar_cola("bloqueo");
             this.actualizar_cola("terminado");
             this.actualizar_general();
+            // console.log('aca se salio la tabla completa');
             this.obtener_tabla_general();
             this.obtener_gantt();
 
@@ -109,7 +110,6 @@ function Procesador() {
     }
 
     this.agregar = (pri = Math.floor(Math.random() * 3) + 1) => {
-        console.log(pri);
         // Generar prioridad aleatoria
         prioridad = pri;
 
@@ -132,7 +132,7 @@ function Procesador() {
         this.actualizar_cola("sjf");
         this.actualizar_cola("fcfs");
         this.actualizar_general();
-        this.obtener_tabla_general();
+        this.obtener_tabla_inicial();
     }
 
     this.bloquear_actual = () => {
@@ -163,11 +163,18 @@ function Procesador() {
     }
 
     this.verificar_prioridad = () => {
-        if (!this.rr.estaVacia() && this.proceso_actual.prioridad > 1) {
-            this.suspender_actual(this.proceso_actual);
-        } else if (!this.sjf.estaVacia() && this.proceso_actual.prioridad > 2) {
-            this.suspender_actual(this.proceso_actual);
+        try {
+            if (!this.rr.estaVacia() && this.proceso_actual.prioridad > 1) {
+                this.bloquear_actual()
+                this.suspender_actual(this.proceso_actual);
+            } else if (!this.sjf.estaVacia() && this.proceso_actual.prioridad > 2) {
+                this.bloquear_actual()
+                this.suspender_actual(this.proceso_actual);
+            }
+        } catch (e) {
+            this.bloquear_actual()
         }
+
     }
 
     this.actualizar_cola = (tipo) => {
@@ -310,6 +317,40 @@ function Procesador() {
             cadena += "<td>" + proceso.final + "</td>";
             cadena += "<td>" + proceso.retorno + "</td>";
             cadena += "<td>" + proceso.espera + "</td>";
+            cadena += "<td class='" + proceso.estado + "'>" + proceso.estado + "</td>";
+            cadena += "</tr>";
+        });
+
+        $("#calculos").html(cadena);
+    }
+
+    this.obtener_tabla_inicial = () => {
+        lista = this.general.enlistar();
+        cadena = "";
+        lista.forEach((nodo, indice, array) => {
+            proceso = nodo.obj;
+            if (nodo.ant.obj == null) {
+                proceso.calcular(0);
+            } else {
+                tiempo_ant = nodo.ant.obj.final;
+                if (tiempo_ant < proceso.llegada) {
+                    if (proceso === this.general.ultimo().obj)
+                        proceso.calcular(this.timer);
+                    else
+                        proceso.calcular(proceso.llegada);
+                } else
+                    proceso.calcular(tiempo_ant);
+            }
+
+            cadena += "<tr>";
+            cadena += "<th>" + proceso.nombre + "</th>";
+            cadena += "<td>" + proceso.prioridad + "</td>";
+            cadena += "<td>" + proceso.llegada + "</td>";
+            cadena += "<td>" + proceso.rafaga + "</td>";
+            cadena += "<td>" + "" + "</td>";
+            cadena += "<td>" + "" + "</td>";
+            cadena += "<td>" + "" + "</td>";
+            cadena += "<td>" + "" + "</td>";
             cadena += "<td class='" + proceso.estado + "'>" + proceso.estado + "</td>";
             cadena += "</tr>";
         });
