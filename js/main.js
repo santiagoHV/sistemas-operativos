@@ -1,27 +1,31 @@
 $(document).ready(() => {
-	let procesador = new Procesador();
+    let procesador = new Procesador();
 
-	$("#iniciar").click(() => {
-		procesador.empezar();
-	});
+    $("#iniciar").click(() => {
+        procesador.empezar();
+    });
 
-	$("#bloquear").click(() => {
-		procesador.bloquear_actual();
-	});
+    $("#bloquear").click(() => {
+        procesador.bloquear_actual();
+    });
 
-	$("#parar").click(() => {
-		procesador.detener();
-	});
+    $("#parar").click(() => {
+        procesador.detener();
+    });
 
-	$("#agregar1").click(() => {
-		procesador.agregar(1);
-	});
+    $("#agregar").click(() => {
+        procesador.agregar();
+    });
 
-	$("#agregar2").click(() => {
-		procesador.agregar(2);
-	});
+    $("#agregar1").click(() => {
+        procesador.agregar(1);
+    });
 
-	$("#agregar3").click(() => {
-		procesador.agregar(3);
-	});
+    $("#agregar2").click(() => {
+        procesador.agregar(2);
+    });
+
+    $("#agregar3").click(() => {
+        procesador.agregar(3);
+    });
 });
