@@ -46,9 +46,9 @@ function Procesador() {
                     if (proceso.rafaga_res > 0) {
                         proceso.rafaga_res--;
                         if (proceso.prioridad == 1) {
-                            // if (proceso.rafaga - proceso.rafaga_res == this.quantum + 1) {
-                            //     this.suspender_actual(proceso);
-                            // }
+                             if (proceso.rafaga - proceso.rafaga_res == this.quantum + 1) {
+                                 this.suspender_actual(proceso);
+                             }
                         }
                     } else {
                         proceso.estado = TERMINADO;
