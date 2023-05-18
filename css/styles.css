@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +18,8 @@ table {
     text-align: center;
 }
 
-table tr th, table tr td{
+table tr th,
+table tr td {
     border-bottom: 1px solid rgb(99, 99, 99);
 }
 
@@ -56,10 +56,10 @@ table tr th, table tr td{
     border-radius: 5px;
     float: left;
 }
-.control .btn{
+
+.control .btn {
     width: 100%;
 }
-
 
 .colas {
     width: 100%;
@@ -67,8 +67,8 @@ table tr th, table tr td{
 }
 
 .robin {
-    min-height: 100px;
-    max-height: 100px;
+    min-height: 200px;
+    max-height: 200px;
     padding: 10px;
     margin: 1%;
     border: 1px solid rgb(99, 99, 99);
@@ -151,23 +151,54 @@ table tr th, table tr td{
     overflow: auto;
 }
 
-#timeline th, #gantt td {
+#timeline th,
+#gantt td {
     width: 20px;
     min-width: 20px;
     max-width: 20px;
 }
 
 #gantt td {
-    border:  1px solid rgb(99, 99, 99) ;
+    border: 1px solid rgb(99, 99, 99);
 }
 
-.esperando {background-color: #3AC5D5;}
-.ejecutando {background-color: #51D53A;}
-.bloqueado {background-color: #EA1919;}
-.suspendido {background-color: #E5D92D;}
+.esperando {
+    background-color: #3AC5D5;
+}
 
-.Esperando {color: #3AC5D5; font-weight: 500;}
-.Ejecutando {color: #51D53A; font-weight: 500;}
-.Bloqueado {color: #EA1919; font-weight: 500;}
-.Suspendido {color: #E5D92D; font-weight: 500;}
-.Terminado {color: #994095; font-weight: 500;}
+.ejecutando {
+    background-color: #51D53A;
+}
+
+.bloqueado {
+    background-color: #EA1919;
+}
+
+.suspendido {
+    background-color: #E5D92D;
+}
+
+.Esperando {
+    color: #3AC5D5;
+    font-weight: 500;
+}
+
+.Ejecutando {
+    color: #51D53A;
+    font-weight: 500;
+}
+
+.Bloqueado {
+    color: #EA1919;
+    font-weight: 500;
+}
+
+.Suspendido {
+    color: #E5D92D;
+    font-weight: 500;
+}
+
+.Terminado {
+    color: #994095;
+    font-weight: 500;
+}
